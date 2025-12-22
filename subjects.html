@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- META ATTRIBUTES -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- WEBSITE -->
+	<title>Subjects | 🫐 BYAcademy</title>
+	<link rel="icon" type="image/x-icon" href="Relic_Moonstone.png">
+
+	<!-- PYTHON -->
+	<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+	<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+	<!-- BS5 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+	<!-- ANIMATE CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+	<!-- INTERNAL CSS -->
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+		@font-face {
+			font-family: CookieRun;
+			src: url('CookieRunFont_OTF/CookieRun\ Regular.otf');
+		}
+
+		@font-face {
+			font-family: CookieRun-Bold;
+			src: url('CookieRunFont_OTF/CookieRun\ Bold.otf');
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		:root {
+			--text: rgb(252, 252, 252);
+			--glass-bg: rgba(255, 255, 255, 0.08);
+			--glass-border: rgba(255, 255, 255, 0.15);
+			--glass-hover-bg: rgba(255, 255, 255, 0.1);
+			--shadow: rgba(0, 0, 0, 0.3);
+			--purple: #a78bfa;
+			--darker-purple: #8a6fe5;
+		}
+		
+		body {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow-x: hidden;
+			font-family: 'Poppins';
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+			color: var(--text) !important;
+		}
+		
+		html {
+			scroll-behavior: smooth;
+		}
+		
+		/* SUBJECTS */
+		#subjects {
+			position: relative;
+			padding: 6rem 0;
+			z-index: 1;
+		}
+		
+		.subjects-layout {
+			max-width: 1400px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: 400px 1fr;
+			gap: 3rem;
+			align-items: start;
+		}
+		
+		.subjects-menu {
+			position: sticky;
+			top: 120px;
+		}
+
+		.sub-card {
+			background: var(--glass-bg);
+			backdrop-filter: blur(20px);
+			border: 2px solid var(--glass-hover-bg);
+			border-radius: 20px;
+			padding: 1.5rem 2rem;
+			margin-bottom: 1rem;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			animation: slideInLeft 0.6s ease;
+		}
+		
+		.sub-card:nth-child(1) { animation-delay: 0.1s; }
+		.sub-card:nth-child(2) { animation-delay: 0.2s; }
+		.sub-card:nth-child(3) { animation-delay: 0.3s; }
+		.sub-card:nth-child(4) { animation-delay: 0.4s; }
+		.sub-card:nth-child(5) { animation-delay: 0.5s; }
+		
+		.sub-card:hover {
+			background: rgba(138, 111, 229, 0.2);
+			border-color: #8a6fe5;
+			transform: translateX(10px);
+		}
+		
+		.sub-card h4 {
+			color: var(--text);
+			font-size: 1.3rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+		}
+		
+		.sub-card p {
+			color: rgba(255, 255, 255, 0.6);
+			font-size: 0.9rem;
+			margin: 0;
+		}
+		
+		.sub-info-display {
+			background: var(--glass-bg);
+			backdrop-filter: blur(20px);
+			border-radius: 30px;
+			padding: 4rem;
+			border: 1px solid var(--glass-hover-bg);
+			min-height: 500px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			color: #fff;
+			animation: fadeIn 1s ease;
+		}
+		
+		.sub-info-display .icon {
+			width: 50%;
+		}
+		
+		.sub-info-display h3 {
+			font-family: 'CookieRun-Bold';
+			font-size: 4.5rem;
+			font-weight: 800;
+			line-height: 1.1;
+			background: linear-gradient(135deg, #fcfcfc 0%, #e0d5ff 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		
+		.sub-info-display p {
+			font-size: 1.2rem;
+			color: rgba(255, 255, 255, 0.7);
+			line-height: 1.8;
+			max-width: 600px;
+		}
+
+		/* NAVBAR */
+		.navbar {
+			padding: 1.5rem 0;
+			background: rgba(10, 10, 15, 0.1);
+			backdrop-filter: blur(20px);
+			border-bottom: 1px solid var(--glass-hover-bg);
+			transition: all 0.4s ease;
+		}
+		
+		.navbar.scrolled {
+			padding: 1rem 0;
+			background: rgba(10, 10, 15, 0.95);
+			border-bottom: 1px solid rgba(138, 111, 229, 0.3);
+		}
+		
+		.navbar-brand {
+			font-family: 'CookieRun-Bold';
+			font-size: 1.8rem;
+			font-weight: 800;
+			color: var(--text);
+			transition: all 0.4s ease;
+		}
+
+		.navbar-brand:hover {
+			color: var(--purple) !important;
+			transform: translateY(-2px);
+		}
+
+		.custom-toggler .navbar-toggler-icon {
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+		}
+
+		.navbar-toggler:focus, .navbar-toggler:active, .navbar-toggler-icon:focus {
+			box-shadow: none !important;
+		}
+		
+		.navbar-nav .nav-link {
+			color: var(--text) !important;
+			font-weight: 500;
+			margin: 0 1.5rem;
+			transition: all 0.3s ease;
+			position: relative;
+			font-size: 0.85rem;
+			letter-spacing: 1px;
+		}
+		
+		.navbar-nav .nav-link:hover {
+			color: var(--purple) !important;
+			transform: translateY(-2px);
+		}
+		
+		.navbar-nav .nav-link::before {
+			content: '';
+			position: absolute;
+			width: 5px;
+			height: 5px;
+			background: var(--darker-purple);
+			border-radius: 50%;
+			top: 50%;
+			left: -15px;
+			transform: translateY(-50%) scale(0);
+			transition: transform 0.3s ease;
+		}
+		
+		.navbar-nav .nav-link:hover::before {
+			transform: translateY(-50%) scale(1);
+		}
+	</style>
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg fixed-top animate__animated animate__fadeIn" id="byaNav">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">🫐 BYAcademy</a>
+			<button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar"
+			aria-expanded="false"
+			aria-label="Toggle navigation"> 
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">HOME</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="grade.html">GWA CALCULATOR</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="subjects.html">SUBJECTS</a>
+					</li>
+					<!-- CHANGED FOR GRADE.HTML AND SUBJECT.HTML TO WORK :3 -->
+					<li class="nav-item">
+						<a class="nav-link" href="index.html#contact">CONTACT</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- SUBJECTS -->
+	<section id="subjects">
+		<div class="container mt-5">
+			<div class="subjects-layout">
+				<div class="subjects-menu">
+					<div class="sub-card" py-click="show_club_linguistics">
+						<h4>📚 Linguistics</h4>
+						<p>for ancient literature</p>
+					</div>
+					
+					<div class="sub-card" py-click="show_club_science">
+						<h4>🧪 Science</h4>
+						<p>for chemistry and whatnot</p>
+					</div>
+					
+					<div class="sub-card" py-click="show_club_history">
+						<h4>📜 History</h4>
+						<p>for Crispia and Earthbread</p>
+					</div>
+
+					<div class="sub-card" py-click="show_club_agriculture">
+						<h4>🌱 Agriculture</h4>
+						<p>for connecting with nature</p>
+					</div>
+
+					<div class="sub-card" py-click="show_club_potions">
+						<h4>🌀 Potion Brewing</h4>
+						<p>for your loved ones</p>
+					</div>
+
+					<div class="sub-card" py-click="show_club_pe">
+						<h4>♟️ Physical Education</h4>
+						<p>for tactical minds</p>
+					</div>
+					
+					<div class="sub-card" py-click="show_club_sorcery">
+						<h4>🪄 Advanced Sorcery</h4>
+						<p>for scholars who wish to aim higher</p>
+					</div>
+				</div>
+				
+				<div class="sub-info-display" id="subject-display">
+					<div class="icon"><img src="Relic_Nameless_Transcript.png" alt=""></div>
+					<h3>What We Offer</h3>
+					<p>The subjects at 🫐 BYAcademy are divided into two <br> tracks with different specializations.</p>
+					<p style="font-size: 1rem; opacity: 0.6;">Click on any subject card to explore!</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+	<script>
+		window.addEventListener('scroll', function() {
+			const navbar = document.getElementById('byaNav');
+			if (window.scrollY > 30) {
+				navbar.classList.add('scrolled');
+			} else {
+				navbar.classList.remove('scrolled');
+			}
+		});
+	</script>
+
+	<py-script type="py" src="subjects.py"></py-script>  
+</body>
+</html>
