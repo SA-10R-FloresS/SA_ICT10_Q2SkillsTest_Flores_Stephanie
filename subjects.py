@@ -68,8 +68,8 @@ subject_data = {
 		'description': 'Only for those who wish to venture beyond. Will you open the portal and see the other side?',
 		'professor': 'Bachalomoth the Dreamer',
 		'topics': [
-			'The Moonstone'
-			'The Dimensional Portal'
+			'The Moonstone',
+			'The Dimensional Portal',
 			'The Perfect Cookie'
 		],
 		'classroom': 'Hall of Enlightenment, Observatory'
